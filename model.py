@@ -29,12 +29,16 @@ class ONNX_MODEL():
         return img.unsqueeze(0).numpy()  # Add batch dimension and convert to numpy
 
 # Load ONNX model
-onnx_model_path = "./onnx_model_weights.onnx"
-session = ONNX_MODEL(onnx_model_path)
+def main():
+    onnx_model_path = "./mtailor-assessment/onnx_model_weights.onnx"
+    session = ONNX_MODEL(onnx_model_path)
 
-# Preprocess image
-input_image = session.preprocess_image("./n01667114_mud_turtle.JPEG")
+    # Preprocess image
+    input_image = session.preprocess_image("./n01667114_mud_turtle.JPEG")
 
-# Run prediction
-outputs = session.predict(input_image)
-print(f"Predicted class index: {outputs}")
+    # Run prediction
+    outputs = session.predict(input_image)
+    print(f"Predicted class index: {outputs}")
+
+if __name__ == "__main__":
+    main()
