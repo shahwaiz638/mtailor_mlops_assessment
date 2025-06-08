@@ -1,6 +1,7 @@
 from pytorch_model import Classifier, BasicBlock
 import torch
 
+# load the PyTorch model
 mtailor = Classifier(BasicBlock, [2, 2, 2, 2])
 mtailor.load_state_dict(torch.load("./pytorch_model_weights.pth"))
 mtailor.eval()
@@ -12,4 +13,5 @@ onnx_program = torch.onnx.export(mtailor, example_inputs, dynamo=True)
 
 onnx_program.optimize()
 
+# Save the ONNX model to a file
 onnx_program.save("onnx_model_weights.onnx")
